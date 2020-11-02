@@ -1,7 +1,6 @@
-import pandas as pd
-import numpy as np
 import json
 import requests
+import time
 
 
 to_get = {'36cUttPdHVwUERcPdJDQhG': 'https://itunes.apple.com/search?term=the+rolling+stones+miss+you&limit=1',
@@ -261,17 +260,24 @@ responses = {}
 error = {}
 
 for track_id, url in to_get.items():
-    # try:
-    print(url)
-#         r = requests.get(url)
-#         content = r.json()
-#         preview = content['results'][0]["previewUrl"]
-#         genre = content['results'][0]["primaryGenreName"]
-
-#         responses[track_id] = [preview, genre]
+    try:
+        r = requests.get(url)
+        content = r.json()
+        preview = content['results'][0]["previewUrl"]
+        genre = content['results'][0]["primaryGenreName"]
         
-#     except:
-#         error[track_id] = url
-#         pass
+    except JSONDecodeError:
+        time.sleep(3)
+        
+        r = requests.get(url)
+        content = r.json()
+        preview = content['results'][0]["previewUrl"]
+        genre = content['results'][0]["primaryGenreName"]
 
-# print(len(responses.keys()))
+    else:
+        error[track_id] = url
+
+    responses[track_id] = [preview, genre]
+    
+
+print(len(responses.keys()))
