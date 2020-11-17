@@ -19,7 +19,7 @@ songs = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/p
 # 10. Heatmaps: result of Dunn's test for danceability, energy, valence
 # 11. Line plots: accompany heatmaps
 
-# # Plot 1
+# Plot 1
 # sns.countplot(x = 'decade', data=songs)
 # plt.xlabel('Decade')
 # plt.ylabel('Count')
@@ -44,9 +44,10 @@ songs = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/p
 # plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/number-one-counts-year.png",
 # 			bbox_inches='tight')
 
-# # Plot 3
+# Plot 3
 # # Mariah Carey's data
 # fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(15,5))
+# fig.subplots_adjust(hspace=0.2, wspace=0.1)
 # mc_data = songs[songs['artist_name'] == "Mariah Carey"]['year']
 # labels = list(range(mc_data.values.min(),mc_data.values.max()+1))
 
@@ -102,24 +103,67 @@ cols = ['danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticnes
 # 			bbox_inches='tight')
 
 # Plot 6
+# sns.set_style(style='white')
 # fig, ax = plt.subplots(figsize=(15,10))
 # plt.title("Correlation Between Audio Features (Pearson's R)", fontsize=20)
 # corr = songs[cols].corr()
-# sns.heatmap(corr, annot=True, fmt='.1g',vmin=0, vmax=1)
+# mask = np.zeros_like(corr)
+# mask[np.triu_indices_from(mask)] = True
+
+# sns.heatmap(corr, mask=mask, annot=True, fmt='.1g', vmin=0, vmax=1, square=True)
 
 # plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/audio-feature-heatmap.png",
 # 			bbox_inches='tight')
 
-# Plot 7
-decade_grouped = songs.groupby(['decade']).mean().reset_index()
+# sns.set_style(style='darkgrid')
 
-fig = plt.figure(figsize=(20,20))
-fig.subplots_adjust(hspace=0.3, wspace=0.2)
-for i in range(1, 13):
-    ax = fig.add_subplot(4, 3, i)
-    feature = cols[i-1]
+# # Plot 7
+# decade_grouped = songs.groupby(['decade']).mean().reset_index()
 
-    sns.barplot(x='decade', y=cols[i-1], data=decade_grouped)
-    ax.set_title(cols[i-1])
+# fig = plt.figure(figsize=(15,15))
+# fig.subplots_adjust(hspace=0.55, wspace=0.3)
+# fig.suptitle("Mean Audio Features by Decade, 1950s to Present", 
+#              y=0.92, fontsize=20)
+# for i in range(1, 13):
+#     ax = fig.add_subplot(4, 3, i)
+#     feature = cols[i-1]
 
-plt.show()
+#     sns.barplot(x='decade', y=cols[i-1], data=decade_grouped)
+#     ax.set_title(cols[i-1])
+
+# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/mean-audio-feature-decade.png",
+# 			bbox_inches='tight')
+
+# Plot 8, 9 - Don't need these
+
+# Plot 10 & 11
+danceability = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_danceability.csv", index_col=0)
+energy = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_energy.csv", index_col=0)
+valence = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_valence.csv", index_col=0)
+
+sns.set_style(style='white')
+
+dfs = [danceability, energy, valence]
+titles = ['danceability', 'energy', 'valence']
+fig = plt.figure(figsize=(15,15))
+fig.subplots_adjust(hspace=0.2, wspace=0.2)
+
+for i,title,df in zip(range(1,4), titles, dfs):
+    ax = fig.add_subplot(2, 3, i)
+    mask = np.zeros_like(df, dtype=np.bool)
+    mask[np.triu_indices_from(mask)] = True
+    
+    sns.heatmap(df, vmin=0, vmax=0.05, mask=mask, fmt='.1g', annot=True, cbar=False, square=True)
+    ax.set_title(f"{title.capitalize()}: Dunn's Test Results")
+
+sns.set_style(style='darkgrid')
+for i,title,c in zip(range(4,7), titles, colors):
+    ax = fig.add_subplot(2, 3, i)
+    plt.plot(songs.groupby('decade').mean()[title], marker="o", c=c)
+    ax.set_ylim((0.3,0.8))
+    ax.set_xlabel("Decade")
+    ax.set_ylabel(f"Mean {title.capitalize()}")
+    ax.set_title(f"Mean {title.capitalize()} by Decade")
+
+plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/test-result-plots.png",
+			bbox_inches='tight')
