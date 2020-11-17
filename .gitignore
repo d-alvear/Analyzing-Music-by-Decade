@@ -1,4 +1,5 @@
 *.mp4
+.vscode
 data/old_data/*
 data/scraped_data/*
 notebooks/.ipynb_checkpoints/*
