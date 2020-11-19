@@ -20,16 +20,20 @@ songs = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/p
 # 11. Line plots: accompany heatmaps
 
 # Plot 1
-# sns.countplot(x = 'decade', data=songs)
-# plt.xlabel('Decade')
-# plt.ylabel('Count')
-# plt.title("Total #1 Hits By Decade")
-# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/number-one-counts-decade.png",
-# 			bbox_inches='tight')
+plt.figure(figsize=(10,5))
+ax = sns.countplot(x = 'decade', data=songs)
+plt.xlabel('Decade')
+plt.ylabel('Count')
+plt.title("Total Number One Singles Per Decade")
+for p in ax.patches:
+    ax.annotate('{}'.format(p.get_height()), (p.get_x()+0.27, p.get_height()+1))
+
+plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/number-one-counts-decade.png",
+			bbox_inches='tight')
 
 # # Plot 2
-# fig, ax = plt.subplots(figsize=(50,15))
-# sns.countplot(x='year', data=songs)
+# plt.figure(figsize=(50,15))
+# ax = sns.countplot(x='year', data=songs)
 
 # e = 2
 # for n,label in enumerate(ax.xaxis.get_ticklabels()):
@@ -40,8 +44,11 @@ songs = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/p
 # plt.ylabel('Count', fontsize=40)
 # plt.xticks(rotation=45, fontsize=30)
 # plt.yticks(fontsize=30)
-# plt.title("Total #1 Hits By Year", fontsize=50)
-# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/number-one-counts-year.png",
+# plt.title("Total Number One Singles Per Year", fontsize=50)
+# for p in ax.patches:
+#     ax.annotate('{}'.format(p.get_height()), (p.get_x(), p.get_height()+0.5), fontsize=30)
+
+# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/number-one-counts-year.png",
 # 			bbox_inches='tight')
 
 # Plot 3
@@ -137,33 +144,33 @@ cols = ['danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticnes
 # Plot 8, 9 - Don't need these
 
 # Plot 10 & 11
-danceability = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_danceability.csv", index_col=0)
-energy = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_energy.csv", index_col=0)
-valence = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_valence.csv", index_col=0)
+# danceability = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_danceability.csv", index_col=0)
+# energy = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_energy.csv", index_col=0)
+# valence = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/processed/stat-output/dunn_valence.csv", index_col=0)
 
-sns.set_style(style='white')
+# sns.set_style(style='white')
 
-dfs = [danceability, energy, valence]
-titles = ['danceability', 'energy', 'valence']
-fig = plt.figure(figsize=(15,15))
-fig.subplots_adjust(hspace=0.2, wspace=0.2)
+# dfs = [danceability, energy, valence]
+# titles = ['danceability', 'energy', 'valence']
+# fig = plt.figure(figsize=(15,15))
+# fig.subplots_adjust(hspace=0.2, wspace=0.2)
 
-for i,title,df in zip(range(1,4), titles, dfs):
-    ax = fig.add_subplot(2, 3, i)
-    mask = np.zeros_like(df, dtype=np.bool)
-    mask[np.triu_indices_from(mask)] = True
+# for i,title,df in zip(range(1,4), titles, dfs):
+#     ax = fig.add_subplot(2, 3, i)
+#     mask = np.zeros_like(df, dtype=np.bool)
+#     mask[np.triu_indices_from(mask)] = True
     
-    sns.heatmap(df, vmin=0, vmax=0.05, mask=mask, fmt='.1g', annot=True, cbar=False, square=True)
-    ax.set_title(f"{title.capitalize()}: Dunn's Test Results")
+#     sns.heatmap(df, vmin=0, vmax=0.05, mask=mask, fmt='.1g', annot=True, cbar=False, square=True)
+#     ax.set_title(f"{title.capitalize()}: Dunn's Test Results")
 
-sns.set_style(style='darkgrid')
-for i,title,c in zip(range(4,7), titles, colors):
-    ax = fig.add_subplot(2, 3, i)
-    plt.plot(songs.groupby('decade').mean()[title], marker="o", c=c)
-    ax.set_ylim((0.3,0.8))
-    ax.set_xlabel("Decade")
-    ax.set_ylabel(f"Mean {title.capitalize()}")
-    ax.set_title(f"Mean {title.capitalize()} by Decade")
+# sns.set_style(style='darkgrid')
+# for i,title,c in zip(range(4,7), titles, colors):
+#     ax = fig.add_subplot(2, 3, i)
+#     plt.plot(songs.groupby('decade').mean()[title], marker="o", c=c)
+#     ax.set_ylim((0.3,0.8))
+#     ax.set_xlabel("Decade")
+#     ax.set_ylabel(f"Mean {title.capitalize()}")
+#     ax.set_title(f"Mean {title.capitalize()} by Decade")
 
-plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/test-result-plots.png",
-			bbox_inches='tight')
+# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/test-result-plots.png",
+# 			bbox_inches='tight')
