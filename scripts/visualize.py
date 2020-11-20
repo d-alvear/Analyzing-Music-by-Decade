@@ -20,16 +20,16 @@ songs = pd.read_csv("C:/Users/deand/Documents/Repositories/Music-Analysis/data/p
 # 11. Line plots: accompany heatmaps
 
 # Plot 1
-plt.figure(figsize=(10,5))
-ax = sns.countplot(x = 'decade', data=songs)
-plt.xlabel('Decade')
-plt.ylabel('Count')
-plt.title("Total Number One Singles Per Decade")
-for p in ax.patches:
-    ax.annotate('{}'.format(p.get_height()), (p.get_x()+0.27, p.get_height()+1))
+# plt.figure(figsize=(10,5))
+# ax = sns.countplot(x = 'decade', data=songs)
+# plt.xlabel('Decade')
+# plt.ylabel('Count')
+# plt.title("Total Number One Singles Per Decade")
+# for p in ax.patches:
+#     ax.annotate('{}'.format(p.get_height()), (p.get_x()+0.27, p.get_height()+1))
 
-plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/number-one-counts-decade.png",
-			bbox_inches='tight')
+# plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/number-one-counts-decade.png",
+# 			bbox_inches='tight')
 
 # # Plot 2
 # plt.figure(figsize=(50,15))
@@ -84,6 +84,10 @@ top_12_artists = list(songs['artist_name'].value_counts()[:12].index)
 #     ax.set_title(f"Total #1 Hits by Year: {artist}")
 #     ax.set_xticklabels(labels, rotation=45)
 #     sns.countplot(data, order=labels )
+
+#     for p in ax.patches:
+#         ax.annotate('{}'.format(p.get_height()), (p.get_x()+0.27, p.get_height()))
+# plt.show()
 
 # plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/top-artist-hits-by-year.png",
 # 			bbox_inches='tight')
