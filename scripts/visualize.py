@@ -156,7 +156,7 @@ cols = ['danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticnes
 
 # dfs = [danceability, energy, valence]
 # titles = ['danceability', 'energy', 'valence']
-# fig = plt.figure(figsize=(15,15))
+# fig = plt.figure(figsize=(15,10))
 # fig.subplots_adjust(hspace=0.2, wspace=0.2)
 
 # for i,title,df in zip(range(1,4), titles, dfs):
@@ -178,3 +178,4 @@ cols = ['danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticnes
 
 # plt.savefig("C:/Users/deand/Documents/Repositories/Music-Analysis/reports/figures/static/test-result-plots.png",
 # 			bbox_inches='tight')
+
