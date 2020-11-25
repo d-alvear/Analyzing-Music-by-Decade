@@ -23,7 +23,7 @@ For this project, I perform an exploratory anlysis on singles that went number o
 
 * Are songs in each decade distinct? Specifically, are songs in each decade statistically different than the others?
 
-The notebook I used for exploratory analysis can be found [here](https://nbviewer.jupyter.org/github/d-alvear/Analyzing-Music-by-Decade/blob/main/notebooks/7-exploration-and-analysis.ipynb), which contains all code, visualizations, and explanations. I also performed PCA and K Means clustering on the dataset; the notebook can be found [here](https://github.com/d-alvear/Analyzing-Music-by-Decade/blob/main/notebooks/8-pca-clustering.ipynb) and the mini-writeup can be found [here]().
+The notebook I used for exploratory analysis can be found [here](https://nbviewer.jupyter.org/github/d-alvear/Analyzing-Music-by-Decade/blob/main/notebooks/7-exploration-and-analysis.ipynb), which contains all code, visualizations, and explanations. I also performed PCA and K Means clustering on the dataset; the notebook can be found [here](https://nbviewer.jupyter.org/github/d-alvear/Analyzing-Music-by-Decade/blob/main/notebooks/8-pca-clustering.ipynb).
 
 The final writeup of this project can be found [here](https://github.com/d-alvear/Analyzing-Music-by-Decade/blob/main/reports/project-writeup.md).
 

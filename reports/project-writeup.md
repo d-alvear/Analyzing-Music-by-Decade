@@ -11,7 +11,7 @@ There is no doubt that music has changed drastically over the past few decades. 
 
 ### Goals
 <p></p>
-In this project, I perform an exploratory anlysis on singles that went number one on the Billboard Hot 100 Chart from the 1950s to present. I focused my analysis on answering the following questions:
+In this project, I perform an exploratory analysis on singles that went number one on the Billboard Hot 100 Chart from the 1950s to present. I focused my analysis on answering the following questions:
 <p></p>
 
 * Which decade had the most number one singles?
