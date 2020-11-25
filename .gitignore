@@ -4,3 +4,4 @@ data/old_data/*
 data/scraped_data/*
 notebooks/.ipynb_checkpoints/*
 notebooks/__pycache__/*
+secret.py
