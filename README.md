@@ -7,7 +7,7 @@
 
 <p></p>
 
-For this project, I perform an exploratory anlysis on singles that went number one on the Billboard Hot 100 Chart from the 1950s to present. I focused my analysis on answering the following questions:
+For this project, I perform an exploratory analysis of singles that went number one on the Billboard Hot 100 Chart from the 1950s to present. I focused my analysis on answering the following questions:
 
 * Which decade had the most number one singles?
 
